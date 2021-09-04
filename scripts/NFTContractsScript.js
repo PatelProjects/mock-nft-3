@@ -1,4 +1,4 @@
-// scripts/index.js
+
 module.exports = async function main (callback) {
   try {
     // Our code will go here
@@ -9,20 +9,12 @@ module.exports = async function main (callback) {
 
     
     // Set up a Truffle contract, representing our deployed Box instance
-    const Box = artifacts.require('Box');
-    const box = await Box.deployed();
+    const NFTContract = artifacts.require('NFTContract');
+    const contract = await NFTContract.deployed();
 
     // Call the retrieve() function of the deployed Box contract
-    const value = await box.retrieve();
-    console.log('Box value is', value.toString());
-
-
-    // Send a transaction to store() a new value in the Box
-    await box.store(23);
-
-    // Call the retrieve() function of the deployed Box contract
-    const value2 = await box.retrieve();
-    console.log('Box value is', value2.toString());
+    const value = await contract.name();
+    console.log('Name of the contract is', value);
 
     callback(0);
   } catch (error) {
